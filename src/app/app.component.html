@@ -1,0 +1,22 @@
+<h1>HAR Parser</h1>
+<input
+  type="file"
+  id="fileInput"
+  #inputFile
+  accept=".har"
+  (change)="onFileSelection($event)"
+/>
+<ul>
+  @for (item of items; track $index) {
+  <li>
+    <div class="header">URL: {{ item?.request?.url }}</div>
+    <div>Method: {{ item?.request?.method }}</div>
+    <div>Status: {{ item?.response?.status }}</div>
+    <div>Response Time: {{ item?.time }}ms</div>
+    <div>Request Headers:</div>
+    <pre>{{ getString(item?.request?.headers) }}</pre>
+    <div>Response Headers:</div>
+    <pre>{{ getString(item?.response?.headers) }}</pre>
+  </li>
+  }
+</ul>
