@@ -1,1 +1,134 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+@mixin open-sans {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+// App styles
+body {
+  margin: 0px;
+  font-size: 14px;
+  @include open-sans;
+}
+.wrapper {
+  display: flex;
+  width: 100%;
+  background: #fafafa;
+  flex-direction: column;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px;
+}
+.header {
+  display: flex;
+  gap: 15px;
+  padding: 5px 10px;
+  background: #ededed;
+  border-radius: 3px;
+  justify-content: space-between;
+  font-weight: 500;
+  font-size: 16px;
+
+  .head-grp {
+    display: flex;
+    gap: 15px;
+  }
+  .status {
+    font-weight: 700;
+  }
+  .url {
+    font-size: 15px;
+  }
+  .blue {
+    color: #0000ff;
+  }
+  .purple {
+    color: #800080;
+  }
+  .green {
+    color: #008000;
+  }
+  .orange {
+    color: #f96237;
+  }
+  .lite-orange {
+    color: #fa9a27;
+  }
+  .red {
+    color: #ff0000;
+  }
+}
+.sub-header {
+  display: flex;
+  gap: 15px;
+}
+.req-head,
+.res-head {
+  display: block;
+  border: 1px dashed #ddd;
+  padding: 15px;
+  width: 50%;
+  overflow: hidden;
+
+  h4 {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  h5 {
+    margin-top: 0px;
+    margin-bottom: 5px;
+    width: 100%;
+  }
+}
+.sub-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 5px;
+  font-size: 13px;
+  .name {
+    text-align: end;
+    font-weight: 600;
+    display: inline-block;
+    position: relative;
+    &::after {
+      content: ":";
+      margin: 0 0 0 4px;
+    }
+  }
+  .val {
+    display: inline-block;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-wrap: wrap;
+    max-height: 40px;
+    color: #686868;
+  }
+}
+pre {
+  background: #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

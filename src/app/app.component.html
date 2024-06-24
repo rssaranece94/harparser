@@ -6,17 +6,58 @@
   accept=".har"
   (change)="onFileSelection($event)"
 />
-<ul>
+<div class="wrapper">
   @for (item of items; track $index) {
-  <li>
-    <div class="header">URL: {{ item?.request?.url }}</div>
-    <div>Method: {{ item?.request?.method }}</div>
-    <div>Status: {{ item?.response?.status }}</div>
-    <div>Response Time: {{ item?.time }}ms</div>
-    <div>Request Headers:</div>
-    <pre>{{ getString(item?.request?.headers) }}</pre>
-    <div>Response Headers:</div>
-    <pre>{{ getString(item?.response?.headers) }}</pre>
-  </li>
+  <div class="item">
+    <div class="header">
+      <div class="head-grp">
+        <div
+          class="status {{ getCodeBasedColor(item?.response?.status) }}"
+          [title]="item?.response?.status"
+        >
+          {{ item?.response?.status }}
+        </div>
+        <div class="method" [title]="item?.request?.method">
+          {{ item?.request?.method }}
+        </div>
+        <div class="url" [title]="item?.request?.url">
+          {{ item?.request?.url }}
+        </div>
+      </div>
+      <div class="head-grp">
+        <div class="time" [title]="item?.time">{{ getTime(item?.time) }}</div>
+      </div>
+    </div>
+    <div class="sub-header">
+      <div class="req-head">
+        <h4>Request</h4>
+        <h5>Headers</h5>
+        <div class="sub-item">
+          @for (req of item?.request?.headers; track (req.name + ''+$index)) {
+          <div class="name" [title]="req.name">{{ req.name }}</div>
+          <div class="val" [title]="req.value">{{ req.value }}</div>
+          }
+        </div>
+        <h5>Data</h5>
+        <div>
+          <pre>{{ jsonParse(item?.request?.postData?.text) | json }}</pre>
+        </div>
+      </div>
+      <div class="res-head">
+        <h4>Response</h4>
+        <h5>Headers</h5>
+        <div class="sub-item">
+          @for (req of item?.response?.headers; track (req.name + ''+$index)) {
+          <div class="name" [title]="req.name">{{ req.name }}</div>
+          <div class="val" [title]="req.value">{{ req.value }}</div>
+          }
+        </div>
+        <h5>Data</h5>
+        <div>
+          <pre>{{ jsonParse(item?.response?.content?.text) | json }}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
   }
-</ul>
+</div>
