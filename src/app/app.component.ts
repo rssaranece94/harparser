@@ -3,17 +3,46 @@ import { RouterOutlet } from '@angular/router';
 import { parseDoc } from './app.worker';
 import { APP_NAME } from './app-constant';
 import { JsonPipe } from '@angular/common';
+import { FilterComponent } from '@ngxhelpers/multi-filter';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, JsonPipe],
+  imports: [RouterOutlet, JsonPipe, FilterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   inputFile = viewChild<ElementRef<HTMLInputElement>>('inputFile');
   items: any = [];
+
+  keys = [
+    {
+      data: ':method',
+      label: 'Method',
+    },
+    {
+      data: ':path',
+      label: 'Path',
+    },
+    {
+      data: ':scheme',
+      label: 'Scheme',
+    },
+    {
+      data: 'accept',
+      label: 'Accept',
+    },
+    {
+      data: 'content-type',
+      label: 'Content Type',
+    },
+    {
+      data: 'origin',
+      label: 'Oitle',
+    },
+  ];
+  conditions = []; //'OR'
   onFileSelection(event: any) {
     const file = event.target.files[0];
     if (file) {

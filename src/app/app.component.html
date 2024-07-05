@@ -6,6 +6,16 @@
   accept=".har"
   (change)="onFileSelection($event)"
 />
+
+<multi-filter
+  [keys]="keys"
+  [globalSearch]="false"
+  [globalSearchMultiple]="false"
+  [source]="[]"
+  [conditions]="conditions"
+>
+</multi-filter>
+
 <div class="wrapper">
   @for (item of items; track $index) {
   <div class="item">

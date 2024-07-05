@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
-
+@import "@ngxhelpers/utils/assets/popover.scss";
 @mixin open-sans {
   font-family: "Open Sans", sans-serif;
   font-optical-sizing: auto;
@@ -131,4 +131,13 @@ pre {
   font-size: 13px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
