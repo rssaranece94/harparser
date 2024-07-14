@@ -1,0 +1,30 @@
+h1 {
+  font-size: 20px;
+  line-height: 20px;
+  margin: 0px 0px 10px 0px;
+  padding: 10px;
+  text-align: center;
+  background: #186aff;
+  color: #fff;
+}
+.filter-section {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 0 10px;
+  flex-wrap: wrap;
+  .full {
+    width: 100%;
+  }
+}
+.d-flex {
+  display: flex;
+}
+.gap-20 {
+  gap: 20px;
+}
+.no-mar {
+  margin: 0px;
+}
