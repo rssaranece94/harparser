@@ -1,0 +1,86 @@
+<mat-accordion multi>
+  @for (item of items(); track $index) {
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title class="header">
+          <div class="head-grp">
+            <div
+              class="status {{ getCodeBasedColor(item?.response?.status) }}"
+              [title]="item?.response?.status"
+            >
+              {{ item?.response?.status }}
+            </div>
+            <div class="method" [title]="item?.request?.method">
+              {{ item?.request?.method }}
+            </div>
+            <div class="url" [title]="item?.request?.url">
+              {{ item?.request?.url }}
+            </div>
+          </div></mat-panel-title
+        >
+        <mat-panel-description class="head-grp">
+          <div class="time" [title]="item?.time">
+            {{ getTime(item?.time) }}
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="sub-header">
+        <div class="req-head">
+          <h4>Request</h4>
+          <h5>Headers</h5>
+          <div class="sub-item">
+            @for (req of item?.request?.headers; track req.name + "" + $index) {
+              <div class="name" [title]="req.name">{{ req.name }}</div>
+              <div class="val" [title]="req.value">{{ req.value }}</div>
+            }
+          </div>
+          @if (
+            responseData() &&
+            item._resourceType === "fetch" &&
+            item?.request?.postData?.text
+          ) {
+            <h5>Data</h5>
+            <div>
+              <pre>{{ jsonParse(item?.request?.postData?.text) | json }}</pre>
+            </div>
+          }
+        </div>
+        <div class="res-head">
+          <h4>Response</h4>
+          <h5>Headers</h5>
+          <div class="sub-item">
+            @for (
+              req of item?.response?.headers;
+              track req.name + "" + $index
+            ) {
+              <div class="name" [title]="req.name">{{ req.name }}</div>
+              <div class="val" [title]="req.value">{{ req.value }}</div>
+            }
+          </div>
+          @if (responseData() && item._resourceType === "fetch") {
+            <h5>Data</h5>
+            @if (
+              getContentType(item.response.headers, "Content-Type") ===
+              "application/json"
+            ) {
+              <div>
+                <pre class="data-box">{{
+                  jsonParse(item?.response?.content?.text) | json
+                }}</pre>
+              </div>
+            } @else {
+              <div>
+                <pre class="data-box">{{ item?.response?.content?.text }}</pre>
+              </div>
+            }
+          } @else if (responseData() && item._resourceType !== "fetch") {
+            <h5>Data</h5>
+            <p>
+              <a (click)="showData(item?.response?.content?.text)">View Data</a>
+            </p>
+          }
+        </div>
+      </div>
+    </mat-expansion-panel>
+  }
+</mat-accordion>
