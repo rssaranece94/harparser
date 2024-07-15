@@ -80,8 +80,8 @@ export class RecordComponent {
     }
     return ms + ' ms';
   }
-  jsonParse(val?: string) {
-    return JSON.parse(val ?? '{}');
+  jsonStringify(val?: any) {
+    return JSON.stringify(val, null, 2);
   }
   getContentType(data?: Header[], key?: string) {
     return data?.find((el) => el.name === key)?.value ?? '';

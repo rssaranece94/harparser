@@ -81,6 +81,7 @@ export interface Request {
 export interface PostData {
   mimeType: string;
   text: string;
+  params: Param[];
 }
 export interface Cooky {
   name: string;
@@ -92,6 +93,10 @@ export interface Cooky {
   secure: boolean;
 }
 
+export interface Param {
+  name: string;
+  value: string;
+}
 export interface Header {
   name: string;
   value: string;

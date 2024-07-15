@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
   itemsSrc = signal<Entry[]>([]);
   responseData = true;
   showDetails = false;
-  categoryControl = new FormControl('all');
+  categoryControl = new FormControl('fetch');
 
   keys = [
     {
@@ -45,14 +45,6 @@ export class AppComponent implements OnInit {
     {
       data: ':path',
       label: 'Path',
-    },
-    {
-      data: ':scheme',
-      label: 'Scheme',
-    },
-    {
-      data: 'accept',
-      label: 'Accept',
     },
     {
       data: 'content-type',
@@ -73,11 +65,7 @@ export class AppComponent implements OnInit {
       { allowSignalWrites: true },
     );
   }
-  ngOnInit(): void {
-    this.categoryControl.valueChanges.subscribe((res) => {
-      this.updateFilters();
-    });
-  }
+  ngOnInit(): void {}
   onFileSelection(event: any) {
     const file = event.target.files[0];
     if (file) {
@@ -105,7 +93,11 @@ export class AppComponent implements OnInit {
       }
     }
   }
+  updateFiltersOne(data: any) {
+    console.log(data);
+  }
   updateFilters() {
+    this.items.update(() => []);
     console.log('Filter started...');
     let data = [...this.itemsSrc()];
     let category = this.categoryControl.value;

@@ -29,7 +29,7 @@
           <h4>Request</h4>
           <h5>Headers</h5>
           <div class="sub-item">
-            @for (req of item?.request?.headers; track req.name + "" + $index) {
+            @for (req of item?.request?.headers; track $index) {
               <div class="name" [title]="req.name">{{ req.name }}</div>
               <div class="val" [title]="req.value">{{ req.value }}</div>
             }
@@ -41,7 +41,13 @@
           ) {
             <h5>Data</h5>
             <div>
-              <pre>{{ jsonParse(item?.request?.postData?.text) | json }}</pre>
+              @if (item?.request?.postData?.params) {
+                <pre class="data-box">{{
+                  jsonStringify(item?.request?.postData?.params ?? {}) | json
+                }}</pre>
+              } @else {
+                <pre class="data-box">{{ item?.request?.postData?.text }}</pre>
+              }
             </div>
           }
         </div>
@@ -49,28 +55,18 @@
           <h4>Response</h4>
           <h5>Headers</h5>
           <div class="sub-item">
-            @for (
-              req of item?.response?.headers;
-              track req.name + "" + $index
-            ) {
+            @for (req of item?.response?.headers; track $index) {
               <div class="name" [title]="req.name">{{ req.name }}</div>
               <div class="val" [title]="req.value">{{ req.value }}</div>
             }
           </div>
           @if (responseData() && item._resourceType === "fetch") {
-            <h5>Data</h5>
-            @if (
-              getContentType(item.response.headers, "Content-Type") ===
-              "application/json"
-            ) {
+            @if ((item?.response?.content)!.size) {
+              <h5>Data</h5>
               <div>
                 <pre class="data-box">{{
-                  jsonParse(item?.response?.content?.text) | json
+                  jsonStringify(item?.response?.content?.text)
                 }}</pre>
-              </div>
-            } @else {
-              <div>
-                <pre class="data-box">{{ item?.response?.content?.text }}</pre>
               </div>
             }
           } @else if (responseData() && item._resourceType !== "fetch") {

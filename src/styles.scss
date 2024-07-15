@@ -59,6 +59,10 @@ body {
   }
   .url {
     font-size: 15px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: calc(100vw - 400px);
   }
   .blue {
     color: #0000ff;
@@ -144,6 +148,8 @@ pre {
   font-size: 13px;
   overflow: hidden;
   text-overflow: ellipsis;
+  word-wrap: normal;
+  white-space: unset;
 }
 
 html,
