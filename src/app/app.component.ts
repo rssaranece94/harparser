@@ -14,6 +14,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { Entry } from './har-model';
 import { RecordComponent } from './record/record.component';
+import { EditorComponent } from './editor/editor.component';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,7 @@ import { RecordComponent } from './record/record.component';
     MatButtonToggleModule,
     ReactiveFormsModule,
     RecordComponent,
+    EditorComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

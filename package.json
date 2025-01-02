@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build --base-href=/harparser-page/",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "postinstall": "node copy-monaco-assets.js"
   },
   "private": true,
   "dependencies": {

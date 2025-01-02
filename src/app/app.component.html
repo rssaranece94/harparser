@@ -15,6 +15,7 @@
         <mat-button-toggle-group
           [formControl]="categoryControl"
           aria-label="Filter by category"
+          (change)="updateFilters()"
         >
           <mat-button-toggle value="all">All</mat-button-toggle>
           <mat-button-toggle value="fetch">Fetch/XHR</mat-button-toggle>
@@ -66,3 +67,5 @@
     ></app-record>
   }
 </div>
+
+<app-editor></app-editor>
